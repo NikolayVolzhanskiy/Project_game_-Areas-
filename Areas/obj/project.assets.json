@@ -8,24 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\adher\\.nuget\\packages\\": {},
-    "D:\\Programs\\Microsoft\\VisualStudio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Nikolay\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\adher\\source\\repos\\Areas\\Areas.csproj",
+      "projectUniqueName": "D:\\Documents\\GitHub\\Project_game_-Areas-\\Areas\\Areas.csproj",
       "projectName": "Areas",
-      "projectPath": "C:\\Users\\adher\\source\\repos\\Areas\\Areas.csproj",
-      "packagesPath": "C:\\Users\\adher\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\adher\\source\\repos\\Areas\\obj\\",
+      "projectPath": "D:\\Documents\\GitHub\\Project_game_-Areas-\\Areas\\Areas.csproj",
+      "packagesPath": "C:\\Users\\Nikolay\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\GitHub\\Project_game_-Areas-\\Areas\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Programs\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\adher\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Nikolay\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
