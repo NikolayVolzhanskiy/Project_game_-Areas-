@@ -4,6 +4,8 @@ namespace Areas
     {
         int cell = 20, pplayer = 0, d1, d2;
         Rectangle rect;
+        List<Rectangle> rects;
+        Point tmppnt;
         bool mouseDown, drawchek;
         Bitmap snapshot;
         Bitmap tempDraw;
@@ -17,6 +19,8 @@ namespace Areas
             snapshot = new Bitmap(pictureBox1.ClientRectangle.Width, this.ClientRectangle.Height);
             color = Color.LightGreen;
             rect = new Rectangle(0, 0, cell, cell);
+            tmppnt = new Point();
+            rects = new List<Rectangle>();
         }
 
         private void Dice_Click(object sender, EventArgs e)
@@ -45,29 +49,73 @@ namespace Areas
             //drawchek = true;
         }
 
+        private bool outside(Rectangle _rect, List<Rectangle> _rects)
+        {
+            int chek = 0;
+            for (int i = 0; i < _rects.Count; i++)
+            {
+                if (_rects[i].X <= _rect.X && _rects[i].Y <= _rect.Y && _rect.Width <= _rects[i].Width && _rect.Height <= _rects[i].Height)
+                {
+                    chek++;
+                }
+            }
+            if (chek >= _rects.Count - 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            /*
-            mouseDown = true;
-            rect.X = (int)(e.X / cell);
-            rect.Y = (int)(e.Y / cell);
-            */
+
+            if (outside(rect, rects))
+            {
+                mouseDown = true;
+                tmppnt.X = (e.X / cell) * cell;
+                tmppnt.Y = (e.Y / cell) * cell;
+            }
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            
+            if (mouseDown)
+            {
+                mouseDown = false;
+                rects.Add(rect);
+                rect.Size = (Size)(new Point(cell));
+                snapshot = (Bitmap)tempDraw.Clone();
+            }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            //if (!mouseDown)
-            //{
-                rect.X = (int)(e.X / cell) * cell;
-                rect.Y = (int)(e.Y / cell) * cell;
-            //}
-            //rect.Width = (int)(e.X / cell + 1);
-            //rect.Height = (int)(e.Y / cell + 1);
+            if (mouseDown)
+            {
+                if (e.X - tmppnt.X >= 0)
+                {
+                    rect.Width = ((e.X - tmppnt.X) / cell + 1) * cell;
+                }
+                else
+                {
+                    rect.X = (e.X / cell) * cell;
+                    rect.Width = ((tmppnt.X - rect.X) / cell + 1) * cell;
+                }
+                if (e.Y - tmppnt.Y >= 0)
+                {
+                    rect.Height = ((e.Y - tmppnt.Y) / cell + 1) * cell;
+                }
+                else
+                {
+                    rect.Y = (e.Y / cell) * cell;
+                    rect.Height = ((tmppnt.Y - rect.Y) / cell + 1) * cell;
+                }
+            }
+            else
+            {
+                rect.X = (e.X / cell) * cell;
+                rect.Y = (e.Y / cell) * cell;
+            }
             pictureBox1.Refresh();
         }
 
