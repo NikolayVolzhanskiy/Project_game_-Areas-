@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\adher\\source\\repos\\Areas\\Areas.csproj": {}
+    "C:\\Users\\adher\\source\\repos\\Areas1\\Areas1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\adher\\source\\repos\\Areas\\Areas.csproj": {
+    "C:\\Users\\adher\\source\\repos\\Areas1\\Areas1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\adher\\source\\repos\\Areas\\Areas.csproj",
-        "projectName": "Areas",
-        "projectPath": "C:\\Users\\adher\\source\\repos\\Areas\\Areas.csproj",
+        "projectUniqueName": "C:\\Users\\adher\\source\\repos\\Areas1\\Areas1.csproj",
+        "projectName": "Areas1",
+        "projectPath": "C:\\Users\\adher\\source\\repos\\Areas1\\Areas1.csproj",
         "packagesPath": "C:\\Users\\adher\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\adher\\source\\repos\\Areas\\obj\\",
+        "outputPath": "C:\\Users\\adher\\source\\repos\\Areas1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programs\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
