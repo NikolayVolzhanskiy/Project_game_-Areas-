@@ -2,7 +2,7 @@ namespace Areas1
 {
     public partial class Form1 : Form
     {
-        int cell = 20, pPlayer = 0, d1, d2, np1 = 0, np2 = 0;
+        int cell = 40, pPlayer = 0, d1, d2, np1 = 0, np2 = 0, max_d, min_d;
         Rectangle rect;
         Point tmppnt;
         bool mouseDown = false, nextPlayer = false;
@@ -22,25 +22,153 @@ namespace Areas1
             tmppnt = new Point();
         }
 
+        private void clear_Click(object sender, EventArgs e)
+        {
+            np1 = np2 = 0;
+            NP1.Text = np1.ToString();
+            NP2.Text = np2.ToString();
+            //pictureBox1.;
+        }
+
         private void drawrect(MouseEventArgs _e)
         {
-            if (_e.X - tmppnt.X >= 0)
+            double xx = _e.X - tmppnt.X;   //Растояние от курсора до точки клика по х
+            double yy = _e.Y - tmppnt.Y;   //Растояние от курсора до точки клика по у
+            int abs_xc = (int)Math.Abs(xx / cell);  //Модуль растояния по х в ячейках
+            int abs_yc = (int)Math.Abs(yy / cell);  //Модуль растояния по у в ячейках
+            // Если курсор в пределах значения минимальной стороны прямоугольника
+            if (abs_xc < min_d && abs_yc < min_d)
             {
-                rect.Width = ((_e.X - tmppnt.X) / cell + 1) * cell;
+                if (xx >= 0)
+                {
+                    rect.Width = ((int)xx / cell + 1) * cell;
+                }
+                else
+                {
+                    rect.X = (_e.X / cell) * cell;
+                    rect.Width = ((tmppnt.X - rect.X) / cell + 1) * cell;
+                }
+                if (yy >= 0)
+                {
+                    rect.Height = ((int)yy / cell + 1) * cell;
+                }
+                else
+                {
+                    rect.Y = (_e.Y / cell) * cell;
+                    rect.Height = ((tmppnt.Y - rect.Y) / cell + 1) * cell;
+                }
             }
-            else
+            // Если курсор в пределах допустимого значения большей стороны прямоугольника относительно х
+            if (abs_xc >= min_d && abs_xc < max_d)
             {
-                rect.X = (_e.X / cell) * cell;
-                rect.Width = ((tmppnt.X - rect.X) / cell + 1) * cell;
+                if (abs_yc < min_d) // если у меньше минимальной стороны
+                {
+                    if (xx >= 0)
+                    {
+                        rect.Width = ((int)xx / cell + 1) * cell;
+                    }
+                    else
+                    {
+                        rect.X = (_e.X / cell) * cell;
+                        rect.Width = ((tmppnt.X - rect.X) / cell + 1) * cell;
+                    }
+                    if (yy >= 0)
+                    {
+                        rect.Height = ((int)yy / cell + 1) * cell;
+                    }
+                    else
+                    {
+                        rect.Y = (_e.Y / cell) * cell;
+                        rect.Height = ((tmppnt.Y - rect.Y) / cell + 1) * cell;
+                    }
+                } else if (abs_yc < max_d)  // Если у меньше максимальной стороны
+                {
+                    if (xx / yy <= 1)
+                    {
+                        if (xx >= 0)
+                        {
+                            rect.Width = ((int)xx / cell + 1) * cell;
+                        }
+                        else
+                        {
+                            rect.X = (_e.X / cell) * cell;
+                            rect.Width = ((tmppnt.X - rect.X) / cell + 1) * cell;
+                        }
+                        if (yy >= 0)
+                        {
+                            rect.Height = min_d * cell;
+                        }
+                        else
+                        {
+                            rect.Y = (tmppnt.Y / cell + 1 - min_d) * cell;
+                            rect.Height = min_d * cell;
+                        }
+                    }
+                    else
+                    {
+                        if (xx >= 0)
+                        {
+                            rect.Width = min_d * cell;
+                        }
+                        else
+                        {
+                            rect.X = (tmppnt.X / cell + 1 - min_d) * cell;
+                            rect.Width = min_d * cell;
+                        }
+                        if (yy >= 0)
+                        {
+                            rect.Height = ((int)yy / cell + 1) * cell;
+                        }
+                        else
+                        {
+                            rect.Y = (_e.Y / cell) * cell;
+                            rect.Height = ((tmppnt.Y - rect.Y) / cell + 1) * cell;
+                        }
+                    }
+                }
             }
-            if (_e.Y - tmppnt.Y >= 0)
+            // Если курсор выходит за пределы допустимых значений сторон прямоугольника. х и у
+            if(abs_xc >= max_d)
             {
-                rect.Height = ((_e.Y - tmppnt.Y) / cell + 1) * cell;
+                if (xx >= 0)
+                {
+                    rect.Width = max_d * cell;
+                }
+                else
+                {
+                    rect.X = (tmppnt.X / cell + 1 - max_d) * cell;
+                    rect.Width = max_d * cell;
+                }
+                if (yy >= 0)
+                {
+                    rect.Height = min_d * cell;
+                }
+                else
+                {
+                    rect.Y = (tmppnt.Y / cell + 1 - min_d) * cell;
+                    rect.Height = min_d * cell;
+                }
             }
-            else
+            if (abs_yc >= max_d)
             {
-                rect.Y = (_e.Y / cell) * cell;
-                rect.Height = ((tmppnt.Y - rect.Y) / cell + 1) * cell;
+                if (xx >= 0)
+                {
+                    rect.Width = min_d * cell;
+                }
+                else
+                {
+                    rect.X = (tmppnt.X / cell + 1 - min_d) * cell;
+                    rect.Width = min_d * cell;
+                }
+                if (yy >= 0)
+                {
+                    rect.Height = max_d * cell;
+                }
+                else
+                {
+                    rect.Y = (tmppnt.Y / cell + 1 - max_d) * cell;
+                    rect.Height = max_d * cell;
+                }
             }
         }
 
@@ -48,6 +176,8 @@ namespace Areas1
         {
             d1 = rnd.Next(1, 7);
             d2 = rnd.Next(1, 7);
+            max_d = Math.Max(d1, d2);
+            min_d = Math.Min(d1, d2);
             D1.Text = d1.ToString();
             D2.Text = d2.ToString();
             nextPlayer = true;
@@ -77,8 +207,8 @@ namespace Areas1
             if (nextPlayer)
             {
                 mouseDown = true;
-                tmppnt.X = (e.X / cell) * cell;
-                tmppnt.Y = (e.Y / cell) * cell;
+                tmppnt.X = e.X;
+                tmppnt.Y = e.Y;
             }
         }
 

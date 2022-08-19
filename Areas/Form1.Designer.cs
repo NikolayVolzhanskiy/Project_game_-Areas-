@@ -39,6 +39,7 @@
             this.NP2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.clear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,7 +120,7 @@
             this.NP1.AutoSize = true;
             this.NP1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.NP1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.NP1.Location = new System.Drawing.Point(173, 43);
+            this.NP1.Location = new System.Drawing.Point(165, 43);
             this.NP1.Name = "NP1";
             this.NP1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.NP1.Size = new System.Drawing.Size(19, 21);
@@ -132,7 +133,7 @@
             this.NP2.AutoSize = true;
             this.NP2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.NP2.ForeColor = System.Drawing.Color.IndianRed;
-            this.NP2.Location = new System.Drawing.Point(173, 125);
+            this.NP2.Location = new System.Drawing.Point(165, 125);
             this.NP2.Name = "NP2";
             this.NP2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.NP2.Size = new System.Drawing.Size(19, 21);
@@ -154,11 +155,22 @@
             this.textBox2.Size = new System.Drawing.Size(180, 23);
             this.textBox2.TabIndex = 9;
             // 
+            // clear
+            // 
+            this.clear.Location = new System.Drawing.Point(12, 211);
+            this.clear.Name = "clear";
+            this.clear.Size = new System.Drawing.Size(180, 23);
+            this.clear.TabIndex = 10;
+            this.clear.Text = "Очистить поле";
+            this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.clear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 821);
+            this.Controls.Add(this.clear);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.NP2);
@@ -189,5 +201,6 @@
         private Label NP2;
         private TextBox textBox1;
         private TextBox textBox2;
+        private Button clear;
     }
 }
